@@ -8,11 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.*;
+import org.testng.annotations.*;
+import pages.Header;
+import pages.LoginPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,12 +22,7 @@ public class BaseTest {
     public static final String TEST_RESOURCE_DIR = "src" + File.separator + "main" + File.separator + "resources" + File.separator;
     public static final String SCREENSHOT_DIR = TEST_RESOURCE_DIR.concat("screenshots" + File.separator);
 
-//    @BeforeSuite
-//    public void setUp(){
-//
-//    }
-    @BeforeSuite
-    public void setDriver(){
+    public void setUp(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -37,8 +31,25 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
     }
+    public void correctBaseLogin(String username, String password){
+        driver.get("http://training.skillo-bg.com/posts/all");
+        Header header = new Header(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        header.goToLogin();
+        String loginHeader = loginPage.getHeader();
+        Assert.assertEquals(loginHeader, "Sign in", "Incorrect login header");
+        loginPage.logIn(username, password);
+        loginPage.getSuccessToastMsg();
+    }
+    @BeforeMethod
+    public void setupTest(ITestContext context){
+        String username = context.getCurrentXmlTest().getParameter("username");
+        String password = context.getCurrentXmlTest().getParameter("password");
+        setUp();
+        correctBaseLogin(username, password);
+    }
 
-    @AfterSuite
+    @AfterMethod
     public void tearDown() throws IOException {
       //  takeScreenshot(testResult);
         if(driver != null){

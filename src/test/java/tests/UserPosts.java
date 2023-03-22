@@ -7,7 +7,7 @@ import pages.ProfilePage;
 
 public class UserPosts extends BaseTest{
 
-    @Test(dependsOnMethods = "correctLogin")
+    @Test
     public void numberOfPosts(){
         HomePage homePage = new HomePage(driver);
         homePage.verifyUrl();

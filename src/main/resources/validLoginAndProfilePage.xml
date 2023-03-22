@@ -1,0 +1,13 @@
+<suite name="AfterSuccessfulLogin" verbose="1">
+    <test name="ProfilePagePosts" preserve-order="true">
+        <classes>
+            <class name="tests.UserPosts">
+                <methods>
+                    <include name="numberOfPosts"/>
+                </methods>
+            </class>
+        </classes>
+        <parameter name="username" value="Teet"/>
+        <parameter name="password" value="Track1"/>
+    </test>
+</suite>
