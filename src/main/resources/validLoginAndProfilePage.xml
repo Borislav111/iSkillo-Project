@@ -1,7 +1,7 @@
 <suite name="AfterSuccessfulLogin" verbose="1">
     <test name="ProfilePagePosts" preserve-order="true">
         <classes>
-            <class name="tests.UserPosts">
+            <class name="tests.ProfilePosts">
                 <methods>
                     <include name="numberOfPosts"/>
                 </methods>

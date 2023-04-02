@@ -30,6 +30,9 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".toast-success .toast-message")
     WebElement successToastMsg;
 
+    @FindBy(css = ".toast-warning .toast-message")
+    WebElement warningToastMsg;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -66,13 +69,17 @@ public class LoginPage extends BasePage {
     }
 
     public String getSuccessToastMsg(){
-        wait.until(ExpectedConditions.visibilityOf(successToastMsg));
+        smallWait.until(ExpectedConditions.visibilityOf(successToastMsg));
         String successMsg = successToastMsg.getText().trim();
         String expectedMsg = "Successful login!";
         if (!successMsg.equals(expectedMsg)) {
             throw new IllegalArgumentException("Successful toast message is different - actual: " + successMsg + " expected: " + expectedMsg);
         }
         return successMsg;
+    }
+    public String getWarningToastMsg(){
+        smallWait.until(ExpectedConditions.visibilityOf(warningToastMsg));
+        return warningToastMsg.getText().trim();
     }
 }
 
