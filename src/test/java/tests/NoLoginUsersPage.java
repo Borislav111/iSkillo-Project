@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.NotFoundPage;
 
-// Try to open first user's profile page without logging in into system
+// Trying to open first user's profile page without logging in into the website
 public class NoLoginUsersPage extends BaseTest{
     private final String infoMsg = "Oops - that's not right!";
     @Test

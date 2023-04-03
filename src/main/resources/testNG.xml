@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test Suite" verbose="1">
+    <parameter name="username" value="Teet"/>
+    <parameter name="password" value="Track1"/>
+    <test name="iSkillo Tests">
+        <classes>
+            <class name="tests.CommentPostNonReg"/>
+            <class name="tests.DislikePost"/>
+            <class name="tests.LogoutWithoutLogin"/>
+            <class name="tests.NoLoginUsersPage"/>
+            <class name="tests.FollowUser"/>
+            <class name="tests.InvalidLoginTest"/>
+            <class name="tests.OpenPostAndComment"/>
+            <class name="tests.ProfilePosts">
+        </class>
+        </classes>
+    </test>
+</suite>

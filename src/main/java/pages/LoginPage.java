@@ -33,6 +33,9 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".toast-warning .toast-message")
     WebElement warningToastMsg;
 
+    @FindBy(css = ".toast-message")
+    WebElement toastMsg;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -54,21 +57,26 @@ public class LoginPage extends BasePage {
         clickElement(signInBtn);
     }
 
-    public String getErorrToastMsg() throws Exception {
+    public String getErrorToastMsg() {
         smallWait.until(ExpectedConditions.visibilityOf(errorToastMsg));
         String errorMsg = errorToastMsg.getText();
         try {
-            if (errorMsg.equals("User not found") || errorMsg.equals("Ivalid password") || errorMsg.equals("UsernameOrEmail cannot be empty") || errorMsg.equals("Password cannot be empty")) {
-                // System.out.println("msg= " + errorMsg);
-                return errorMsg;
+            switch (errorMsg) {
+                case "User not found":
+                case "Ivalid password":
+                case "UsernameOrEmail cannot be empty":
+                case "Password cannot be empty":
+                    return errorMsg;
+                default:
+                    throw new RuntimeException("Unexpected error: " + errorMsg);
             }
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
-        return errorToastMsg.getText();
+        return errorMsg;
     }
 
-    public String getSuccessToastMsg(){
+    public String getSuccessToastMsg() {
         smallWait.until(ExpectedConditions.visibilityOf(successToastMsg));
         String successMsg = successToastMsg.getText().trim();
         String expectedMsg = "Successful login!";
@@ -77,14 +85,15 @@ public class LoginPage extends BasePage {
         }
         return successMsg;
     }
-    public String getWarningToastMsg(){
+
+    public String getWarningToastMsg() {
         smallWait.until(ExpectedConditions.visibilityOf(warningToastMsg));
         return warningToastMsg.getText().trim();
     }
-}
 
-//        } else {
-//            System.out.println(errorMsg);
-//            throw new Exception("User has logged in successfully!");
-//        }
+    public String getToastMgs() {
+        smallWait.until(ExpectedConditions.visibilityOf(toastMsg));
+        return toastMsg.getText();
+    }
+}
 

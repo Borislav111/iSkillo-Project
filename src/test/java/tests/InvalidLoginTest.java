@@ -7,19 +7,20 @@ import pages.Header;
 import pages.HomePage;
 import pages.LoginPage;
 
+// Trying multiple ways to log in with invalid credentials
 public class InvalidLoginTest extends BaseTest {
     @DataProvider(name = "invalidCredentials")
     public Object[][] invalidCredentials() {
         return new Object[][]{
-//                {"Invalid1234", "Invalid77512"},
-//                {"Teet", "14123121"}, // correct user
-//                {"", "1234"},
+                {"Invalid1234", "Invalid77512"},
+                {"Teet", "14123121"},
+                {"", "1234"},
                 {"Teet", ""},
-                {"Teet", "Track1"}
+//              {"Teet", "Track1"} //try it with correct user
         };
     }
     @Test(dataProvider = "invalidCredentials")
-    public void invalidLoginCredentials(String username, String password) throws Exception {
+    public void invalidLoginCredentials(String username, String password){
         HomePage homePage = new HomePage(driver);
         homePage.navigateUrl();
         homePage.verifyUrl();
@@ -32,6 +33,6 @@ public class InvalidLoginTest extends BaseTest {
         Assert.assertEquals(loginHeader, "Sign in", "Invalid login header");
         loginPage.logIn(username, password);
 
-        loginPage.getErorrToastMsg();
+        loginPage.getErrorToastMsg();
     }
 }

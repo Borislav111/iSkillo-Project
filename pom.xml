@@ -63,7 +63,7 @@
                     <version>3.0.0-M7</version>
                     <configuration>
                         <suiteXmlFiles>
-                            <suiteXmlFile>src/test/resources/testngParallel.xml</suiteXmlFile>
+                            <suiteXmlFile>src/main/resources/testNG.xml</suiteXmlFile>
                         </suiteXmlFiles>
                     </configuration>
                 </plugin>

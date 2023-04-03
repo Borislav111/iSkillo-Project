@@ -10,8 +10,8 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OpenedPost;
 
-import java.security.Key;
 
+// Logged-in user writes a comment and the test check if that comment matches the username of commented user
 public class OpenPostAndComment extends BaseTest{
     @DataProvider(name = "validCredentials")
     public Object[][] validCredentials() {

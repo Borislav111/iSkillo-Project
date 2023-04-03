@@ -1,6 +1,5 @@
 package tests;
 
-import org.apache.commons.logging.Log;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -9,8 +8,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OpenedPost;
 
-import javax.swing.*;
-
+// Trying to comment a post as a guest
 public class CommentPostNonReg extends BaseTest{
 
     @Test

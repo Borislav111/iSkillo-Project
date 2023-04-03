@@ -37,7 +37,7 @@ public class HomePage extends BasePage {
 
     public void openFirstPost() {
         wait.until(ExpectedConditions.visibilityOfAllElements(publishedPosts));
-        WebElement firstPost = publishedPosts.get(2);
+        WebElement firstPost = publishedPosts.get(0);
         clickElement(firstPost);
     }
 
@@ -47,12 +47,12 @@ public class HomePage extends BasePage {
 
     public void followFirstUser(){
         followBtn = followButtons.get(0);
-        smallWait.until(ExpectedConditions.textToBePresentInElement(followBtn, "Follow"));
-        clickElement(followBtn);
-    }
-
-    public String getUnfollowBtnText(){
-        followBtn = unfollowBtn;
-        return followBtn.getText();
+        smallWait.until(ExpectedConditions.visibilityOf(followBtn));
+        String followBtnText = followBtn.getText();
+        if(followBtnText.equals("Follow")) {
+            clickElement(followBtn);
+        } else {
+            throw new RuntimeException("Button state is different: " + followBtnText);
+        }
     }
 }

@@ -6,7 +6,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OpenedPost;
 
-// Dislike a post without log in
+// Dislike a post without logging in
 public class DislikePost extends  BaseTest{
     @Test
     public void dislikePost() {
@@ -18,7 +18,7 @@ public class DislikePost extends  BaseTest{
         OpenedPost openedPost = new OpenedPost(driver);
         openedPost.dislikePost();
         LoginPage loginPage = new LoginPage(driver);
-        String expectedWarningMsg = loginPage.getWarningToastMsg();
-        Assert.assertEquals(expectedWarningMsg, "You must login", "The toast message is invalid");
+        String actualToastMsg = loginPage.getToastMgs();
+        Assert.assertEquals(actualToastMsg, "You must login", "The toast message is invalid");
     }
 }

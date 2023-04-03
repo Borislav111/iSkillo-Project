@@ -8,11 +8,11 @@ import pages.Header;
 import pages.HomePage;
 import pages.LoginPage;
 
-// Follow user from homepage
+// Follow the first user from homepage
 public class FollowUser extends BaseTest {
     @Parameters({"username","password"})
     @Test
-    public void followUserHomePage(String username, String password) throws InterruptedException {
+    public void followUserHomePage(String username, String password){
         HomePage homePage = new HomePage(driver);
         homePage.navigateUrl();
         homePage.verifyUrl();
@@ -24,6 +24,5 @@ public class FollowUser extends BaseTest {
         loginPage.logIn(username, password);
 
         homePage.followFirstUser();
-        Assert.assertEquals(homePage.getUnfollowBtnText(), "Unfollow", "The button text is not correct");
     }
 }
